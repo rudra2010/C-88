@@ -1,7 +1,7 @@
 var canvas=new fabric.Canvas('myCanvas');
 // Create canvas variable
 ball_x=0;
-ball_y=0
+ball_y=0;
 hole_x=800;
 hole_y=400;
 //Set initial positions for ball and hole images.
@@ -18,10 +18,10 @@ function load_img(){
 		hole_obj.scaleToHeight(50);
 		hole_obj.set({
 		top:hole_y,
-		top:hole_x	
+		left:hole_x	
 		});
 		canvas.add(hole_obj);
-	})
+	});
 	
 	new_image();
 }
@@ -29,16 +29,16 @@ function load_img(){
 
 function new_image()
 {
-	fabric.Image.fromURL("ball.png" ,function(Img){
+	fabric.Image.fromURL("ball.png" ,function(Img) {
 		ball_obj=Img;
 		ball_obj.scaleToWidth(50);
 		ball_obj.scaleToHeight(50);
 		ball_obj.set({
 		top:ball_y,
-		top:ball_x	
+		left:ball_x	
 		});
 		canvas.add(ball_obj);
-	})
+	});
 }	
 
 
@@ -49,6 +49,7 @@ function my_keydown(e)
 	keyPressed = e.keyCode;
 	console.log(keyPressed);
 	if((ball_x==hole_x)&&(ball_y==hole_y)){
+		canvas.remove(ball_obj);
 document.getElementById("hd3").innerHTML="youhave hit the goal!!!!";
 document.getElementById("myCanvas").style.borderColor="red";
 	}
@@ -78,7 +79,7 @@ document.getElementById("myCanvas").style.borderColor="red";
 	
 	function up()
 	{
-		if(player_y>=0){
+		if(ball_y>=0){
 			ball_y=ball_y-block_image_height;
 			console.log("block image height="+block_image_height);
 			console.log("when up arrow key is pressed,X="+ball_x+", Y="+ ball_y);
@@ -89,7 +90,7 @@ document.getElementById("myCanvas").style.borderColor="red";
 
 	function down()
 	{
-		if(ball_y<=400){
+		if(ball_y<=500){
 			ball_y=ball_y+block_image_height;
 			console.log("block image height="+block_image_height);
 			console.log("when down arrow key is pressed,X="+ball_x+", Y="+ ball_y);
